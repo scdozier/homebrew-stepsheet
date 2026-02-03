@@ -20,23 +20,24 @@ class Stepsheet < Formula
     app = Dir["release/mac*/*.app"].first
     if app
       prefix.install app
+      # Also link to bin for easy CLI access
+      bin.install_symlink prefix/"StepSheet.app/Contents/MacOS/StepSheet" => "stepsheet"
     end
-  end
-
-  def post_install
-    # Symlink to Applications folder
-    app_path = prefix/"StepSheet.app"
-    target = Pathname.new("/Applications/StepSheet.app")
-    target.unlink if target.symlink? || target.exist?
-    FileUtils.ln_sf(app_path, target)
   end
 
   def caveats
     <<~EOS
-      StepSheet has been installed and linked to /Applications/StepSheet.app
+      StepSheet has been installed to:
+        #{prefix}/StepSheet.app
+
+      To add to your Applications folder, run:
+        ln -sf #{opt_prefix}/StepSheet.app /Applications/StepSheet.app
 
       To launch:
-        open /Applications/StepSheet.app
+        open #{opt_prefix}/StepSheet.app
+      
+      Or simply run:
+        stepsheet
     EOS
   end
 
