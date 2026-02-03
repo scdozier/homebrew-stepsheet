@@ -10,7 +10,8 @@ class Stepsheet < Formula
   def install
     system "npm", "ci"
     system "npm", "run", "build"
-    system "npm", "run", "dist:mac"
+    # Build unpacked app (no DMG) - works in sandboxed environment
+    system "npx", "electron-builder", "--mac", "--dir"
     
     # Find and install the .app bundle
     app = Dir["release/mac*/*.app"].first
