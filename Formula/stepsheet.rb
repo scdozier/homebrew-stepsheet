@@ -2,7 +2,7 @@ class Stepsheet < Formula
   desc "Menu bar app for always-on-top checklist overlay for demos"
   homepage "https://github.com/scdozier/stepsheet"
   url "https://github.com/scdozier/stepsheet/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "39e8ccd72286f658e7b274ef03ca06274c3cdcab87230282b9024132471fae2e"
+  sha256 "5742a2ee817ab9f7cd5392bfa316f5acbe4a0994304877aee2ed9f9cc9988d9d"
   license "MIT"
 
   depends_on "node@22"
