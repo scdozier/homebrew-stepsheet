@@ -5,7 +5,7 @@ class Stepsheet < Formula
   sha256 "39e8ccd72286f658e7b274ef03ca06274c3cdcab87230282b9024132471fae2e"
   license "MIT"
 
-  depends_on "node@18"
+  depends_on "node@22"
 
   # Skip relinking - Electron apps are self-contained
   skip_clean :all
@@ -35,7 +35,7 @@ class Stepsheet < Formula
 
       To launch:
         open #{opt_prefix}/StepSheet.app
-      
+
       Or simply run:
         stepsheet
     EOS
