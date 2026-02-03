@@ -7,6 +7,9 @@ class Stepsheet < Formula
 
   depends_on "node@18"
 
+  # Skip relinking - Electron apps are self-contained
+  skip_clean :all
+
   def install
     system "npm", "ci"
     system "npm", "run", "build"
@@ -24,10 +27,10 @@ class Stepsheet < Formula
     <<~EOS
       StepSheet has been installed to:
         #{prefix}/StepSheet.app
-      
+
       To add to your Applications folder:
         ln -sf #{prefix}/StepSheet.app /Applications/StepSheet.app
-      
+
       To launch:
         open #{prefix}/StepSheet.app
     EOS
