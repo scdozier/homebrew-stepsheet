@@ -23,16 +23,20 @@ class Stepsheet < Formula
     end
   end
 
+  def post_install
+    # Symlink to Applications folder
+    app_path = prefix/"StepSheet.app"
+    target = Pathname.new("/Applications/StepSheet.app")
+    target.unlink if target.symlink? || target.exist?
+    FileUtils.ln_sf(app_path, target)
+  end
+
   def caveats
     <<~EOS
-      StepSheet has been installed to:
-        #{prefix}/StepSheet.app
-
-      To add to your Applications folder:
-        ln -sf #{prefix}/StepSheet.app /Applications/StepSheet.app
+      StepSheet has been installed and linked to /Applications/StepSheet.app
 
       To launch:
-        open #{prefix}/StepSheet.app
+        open /Applications/StepSheet.app
     EOS
   end
 
