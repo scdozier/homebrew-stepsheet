@@ -20,6 +20,9 @@ class Stepsheet < Formula
     app = Dir["release/mac*/*.app"].first
     if app
       prefix.install app
+      # Re-sign the Electron app with ad-hoc signature to fix "Unable to find helper app"
+      # error caused by broken code signature when built without signing certificates
+      system "codesign", "--force", "--deep", "--sign", "-", "#{prefix}/StepSheet.app"
       # Also link to bin for easy CLI access
       bin.install_symlink prefix/"StepSheet.app/Contents/MacOS/StepSheet" => "stepsheet"
     end
